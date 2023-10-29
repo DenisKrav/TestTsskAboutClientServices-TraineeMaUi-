@@ -1,0 +1,27 @@
+﻿@model TestTsskAboutClientServices_TraineeMaUi_.Models.Client
+@{
+    ViewData["Title"] = "Add client";
+}
+
+<div class="container text-center">
+    <h1>Додати клієнта</h1>
+    <form asp-action="AddClient" asp-controller="ClientOperation">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label">Ім'я клієнта</label>
+            <input asp-for="Name" type="text" class="form-control" placeholder="Введіть ім'я клієнта">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Surname" class="form-label">Призвіще клієнта</label>
+            <input asp-for="Surname" type="text" class="form-control" placeholder="Введіть призвіще клієнта">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Phone" class="form-label">Телефон клієнта</label>
+            <input asp-for="Phone" type="tel" class="form-control" placeholder="Введіть телефон клієнта">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Discount" class="form-label">Персональна знижка клієнта</label>
+            <input asp-for="Discount" type="number" class="form-control" placeholder="Введіть знижку клієнта">
+        </div>
+        <button type="submit" class="btn btn-primary">Додати клієнта</button>
+    </form>
+</div>
