@@ -31,10 +31,7 @@ public partial class ClientControlServiceContext : DbContext
         {
             entity.ToTable("Client");
 
-            entity.Property(e => e.Id)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("id");
+            entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Discount).HasColumnName("discount");
             entity.Property(e => e.Name)
                 .HasMaxLength(50)
@@ -55,10 +52,7 @@ public partial class ClientControlServiceContext : DbContext
             entity.ToTable("ClientOrder");
 
             entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.ClientId)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("client_id");
+            entity.Property(e => e.ClientId).HasColumnName("client_id");
             entity.Property(e => e.ProductId).HasColumnName("product_id");
 
             entity.HasOne(d => d.Client).WithMany(p => p.ClientOrders)

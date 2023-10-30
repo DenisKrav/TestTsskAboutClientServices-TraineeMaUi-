@@ -5,7 +5,7 @@ namespace TestTsskAboutClientServices_TraineeMaUi_.Models;
 
 public partial class Client
 {
-    public string Id { get; set; } = null!;
+    public int Id { get; set; }
 
     public string? Name { get; set; }
 

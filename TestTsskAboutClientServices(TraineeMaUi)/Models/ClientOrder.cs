@@ -7,7 +7,7 @@ public partial class ClientOrder
 {
     public int Id { get; set; }
 
-    public string ClientId { get; set; } = null!;
+    public int ClientId { get; set; }
 
     public int ProductId { get; set; }
 
