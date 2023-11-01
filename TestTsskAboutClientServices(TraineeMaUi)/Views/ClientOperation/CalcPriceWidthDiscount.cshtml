@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model TestTsskAboutClientServices_TraineeMaUi_.ViewModels.ClientViewModel
 @{
+    ViewData["Title"] = "Calculate price width discount page";
 }
+
+@if (ViewData["Error"] != null)
+{
+    <div class="container">
+        <div class="alert alert-danger" role="alert">
+            @ViewData["Error"]
+        </div>
+    </div>
+}
+
+<div class="container mt-5 text-center">
+    <h2 class="text-center">Прорахувати ціну продукта з урахуванням індивідуальної скидки</h2>
+
+    <form asp-action="CalcPriceWidthDiscount" asp-controller="ClientOperation" method="post" role="form">
+        @* Випадаючий список з id клієнтами *@
+        <div class="mb-3">
+            <label for="customerId">ID покупця:</label>
+            <select class="form-control" name="clientId">
+                @foreach (var idClient in Model.ClientsId)
+                {
+                    <option value="@idClient.Id" asp-route-id="@idClient.Id">@idClient.Id</option>
+                }
+            </select>
+        </div>
+
+        @* Випадаючий список з id продуктами *@
+        <div class="mb-3">
+            <label for="productId">ID продукту:</label>
+            <select class="form-control" name="productId">
+                @foreach (var idProduct in Model.ProductsId)
+                {
+                    <option value="@idProduct.Id" asp-route-id="@idProduct.Id">@idProduct.Id</option>
+                }
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="@Model.PriceWidthDiscount">Ціна з урахуванням:</label>
+            <input asp-for="@Model.PriceWidthDiscount" type="text" name="PriceWidthDiscount" class="form-control" readonly>
+        </div>
+
+        <input type="submit" class="btn btn-primary" id="calculatePrice" value="Розрахувати ціну"/>
+    </form>
+</div>

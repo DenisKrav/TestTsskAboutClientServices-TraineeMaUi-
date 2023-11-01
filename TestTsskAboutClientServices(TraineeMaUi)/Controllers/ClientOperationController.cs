@@ -123,6 +123,39 @@ namespace TestTsskAboutClientServices_TraineeMaUi_.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult CalcPriceWidthDiscount()
+        {
+            clientViewModel.ClientsId = db.Clients.Select(c => new ClientIdModel { Id = c.Id }).ToList();
+            clientViewModel.ProductsId = db.Products.Select(c => new ProductIdModel { Id = c.Id }).ToList();
 
+            return View(clientViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CalcPriceWidthDiscount(int? clientId, int? productId)
+        {
+            if (clientId == null || productId == null) 
+            {
+                return NotFound();
+            }
+            else
+            {
+                Client? client = await db.Clients.FirstOrDefaultAsync(c => c.Id == clientId);
+                Product? product = await db.Products.FirstOrDefaultAsync(p => p.Id == productId);
+
+                if (client.Discount == null || client.Discount == 0)
+                {
+                    clientViewModel.PriceWidthDiscount = product.Price;
+
+                    return View(clientViewModel);
+                }
+                else
+                {
+                    clientViewModel.PriceWidthDiscount = (client.Discount * product.Price) / 100;
+                    return View(clientViewModel);
+                }
+            }
+        }
     }
 }
