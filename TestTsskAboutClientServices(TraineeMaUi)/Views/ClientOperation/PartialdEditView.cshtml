@@ -1,5 +1,7 @@
 ﻿@model TestTsskAboutClientServices_TraineeMaUi_.ViewModels.ClientViewModel
 
+@* Часткове представлення для форми редагування *@
+
 <form asp-action="EditClientInf" asp-controller="ClientOperation" asp-route-id="@Model.SelectedClient.Id">  
     <div class="mb-3">
         <label asp-for="@Model.SelectedClient.Name">Ім'я клієнта:</label>

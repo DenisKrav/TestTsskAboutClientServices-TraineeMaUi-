@@ -6,7 +6,7 @@
 @if (ViewData["Error"] != null)
 {
     <div class="container">
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert"> 
             @ViewData["Error"]
         </div>
     </div>
@@ -17,8 +17,8 @@
 
     <!-- Випадаючий список рахунків -->
     <div class="mb-4">
-        <label for="accountSelect">Оберіть рахунок клієнта:</label>
-        <select id="accountSelect" class="form-control">
+        <label for="accountSelectEdit">Оберіть рахунок клієнта:</label>
+        <select id="accountSelectEdit" class="form-control">
             @foreach(var idClient in Model.ClientsId)
             {
                 <option value="@idClient.Id" asp-route-id="@idClient.Id">@idClient.Id</option>
@@ -27,6 +27,7 @@
     </div>
 
     <!-- Форма редагування -->
+    @* При виборі клієнта, за допомогою js міняємо старі поля для ввод на нову, з новою інформацією *@
     <div id ="EditForm">
         @await Html.PartialAsync("PartialdEditView.cshtml")
     </div>

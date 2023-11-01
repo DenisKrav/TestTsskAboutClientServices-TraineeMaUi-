@@ -1,0 +1,26 @@
+﻿@model TestTsskAboutClientServices_TraineeMaUi_.ViewModels.ClientViewModel
+
+@* Часткове представлення для таблиці з історією замовлень *@
+
+<div class="container">
+    <h2>Замовлені товари</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Назва товару</th>
+                <th>Ціна</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.ClientsOrders)
+            {
+                <tr>
+                    <td>@product.Id</td>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

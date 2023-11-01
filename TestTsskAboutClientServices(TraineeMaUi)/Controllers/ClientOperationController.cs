@@ -57,19 +57,19 @@ namespace TestTsskAboutClientServices_TraineeMaUi_.Controllers
             
             clientViewModel.ClientsId = db.Clients.Select(c => new ClientIdModel { Id = c.Id }).ToList();
 
-            if (id == null)
+            if (id == null) // за замовчуванням
             {
                 clientViewModel.SelectedClient = await db.Clients.FirstOrDefaultAsync();
 
                 return View(clientViewModel);
             }
-            else
+            else // якщо вибрали клієнта
             {
                 clientViewModel.SelectedClient = await db.Clients.FirstOrDefaultAsync(c => c.Id == id);
 
                 if (clientViewModel.SelectedClient != null)
                 {
-                    //return View(clientViewModel);
+                    //Повертаємо часткове значення, а в js міняємо старе на це
                     return PartialView("PartialdEditView", clientViewModel);
                 }
                 else
@@ -95,9 +95,34 @@ namespace TestTsskAboutClientServices_TraineeMaUi_.Controllers
 
                 db.Clients.Update(client);
                 await db.SaveChangesAsync();
+                // Задаємо для значення id null, щоб після переадресації код спрацьовував вірно і повертав повне
+                // представлення, а не часткове.
                 return RedirectToAction("EditClientInf", new { id = (string?)null });
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> CheckClientOrderHistory(int? id)
+        {
+            clientViewModel.ClientsId = db.Clients.Select(c => new ClientIdModel { Id = c.Id }).ToList();
+
+            if (id == null) // встановлюємо за замовчуванням
+            {
+                Client? defoltClient = await db.Clients.FirstOrDefaultAsync();
+                clientViewModel.ClientsOrders = db.ClientOrders.Where(o => o.ClientId == defoltClient.Id).Select(o => o.Product).ToList();
+
+                return View(clientViewModel);
+            }
+            else // якщо вибрали клієнта
+            {
+                // Задаємо для значення id null, щоб після переадресації код спрацьовував вірно і повертав повне
+                // представлення, а не часткове.
+                clientViewModel.ClientsOrders = db.ClientOrders.Where(o => o.ClientId == id).Select(o => o.Product).ToList();
+
+                return PartialView("PartialHistoryView", clientViewModel);
+            }
+        }
+
 
     }
 }
