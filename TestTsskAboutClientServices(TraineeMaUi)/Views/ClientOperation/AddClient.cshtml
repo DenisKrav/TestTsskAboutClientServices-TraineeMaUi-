@@ -17,19 +17,19 @@
     <form asp-action="AddClient" asp-controller="ClientOperation" method="post" role="form">
         <div class="mb-3">
             <label asp-for="Name" class="form-label">Ім'я клієнта</label>
-            <input asp-for="Name" type="text" class="form-control" name="Name" placeholder="Введіть ім'я клієнта" required />
+            <input id="SelectedClient_Name" asp-for="Name" type="text" class="form-control" name="Name" placeholder="Введіть ім'я клієнта" required />
         </div>
         <div class="mb-3">
             <label asp-for="Surname" class="form-label">Призвіще клієнта</label>
-            <input asp-for="Surname" type="text" class="form-control" name="Surname" placeholder="Введіть призвіще клієнта" required />
+            <input id="SelectedClient_Surname" asp-for="Surname" type="text" class="form-control" name="Surname" placeholder="Введіть призвіще клієнта" required />
         </div>
         <div class="mb-3">
             <label asp-for="Phone" class="form-label">Телефон клієнта</label>
-            <input asp-for="Phone" type="tel" class="form-control" name="Phone" placeholder="Введіть телефон клієнта" required />
+            <input id="SelectedClient_Phone" asp-for="Phone" type="tel" class="form-control" name="Phone" placeholder="Введіть телефон клієнта" required />
         </div>
         <div class="mb-3">
             <label asp-for="Discount" class="form-label">Персональна знижка клієнта</label>
-            <input asp-for="Discount" type="number" class="form-control" name="Discount" placeholder="Введіть знижку клієнта" />
+            <input id="SelectedClient_Discount" asp-for="Discount" type="number" class="form-control" name="Discount" placeholder="Введіть знижку клієнта" />
         </div>
         <input type="submit" class="btn btn-primary" value="Додати клієнта" />
     </form>

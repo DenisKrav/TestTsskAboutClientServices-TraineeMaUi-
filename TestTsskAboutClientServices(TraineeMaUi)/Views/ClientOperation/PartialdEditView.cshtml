@@ -1,0 +1,22 @@
+﻿@model TestTsskAboutClientServices_TraineeMaUi_.ViewModels.ClientViewModel
+
+<form asp-action="EditClientInf" asp-controller="ClientOperation" asp-route-id="@Model.SelectedClient.Id">  
+    <div class="mb-3">
+        <label asp-for="@Model.SelectedClient.Name">Ім'я клієнта:</label>
+        <input type="text" asp-for="@Model.SelectedClient.Name" class="form-control" name="Name" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.SelectedClient.Surname">Призвіще клієнта:</label>
+        <input type="text" class="form-control" asp-for="@Model.SelectedClient.Surname" name="Surname" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.SelectedClient.Phone">Телефон клієнта:</label>
+        <input type="tel" class="form-control" asp-for="@Model.SelectedClient.Phone" name="Phone" required />
+    </div>
+    <div class="mb-3">
+        <label asp-for="@Model.SelectedClient.Discount">Знижка клієнта:</label>
+        <input type="number" class="form-control" asp-for="@Model.SelectedClient.Discount" name="Discount" />
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Зберегти зміни" />
+</form>

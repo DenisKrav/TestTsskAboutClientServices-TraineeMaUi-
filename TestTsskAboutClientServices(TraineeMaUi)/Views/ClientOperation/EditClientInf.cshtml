@@ -1,4 +1,4 @@
-﻿@model TestTsskAboutClientServices_TraineeMaUi_.Models
+﻿@model TestTsskAboutClientServices_TraineeMaUi_.ViewModels.ClientViewModel
 @{
     ViewData["Title"] = "Edit client";
 }
@@ -12,25 +12,23 @@
     </div>
 }
 
-<div class="container text-center">
-    <h1>Додати клієнта</h1>
-    <form asp-action="AddClient" asp-controller="ClientOperation" method="post" role="form">
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label">Ім'я клієнта</label>
-            <input asp-for="Name" type="text" class="form-control" name="Name" placeholder="Введіть ім'я клієнта" required />
-        </div>
-        <div class="mb-3">
-            <label asp-for="Surname" class="form-label">Призвіще клієнта</label>
-            <input asp-for="Surname" type="text" class="form-control" name="Surname" placeholder="Введіть призвіще клієнта" required />
-        </div>
-        <div class="mb-3">
-            <label asp-for="Phone" class="form-label">Телефон клієнта</label>
-            <input asp-for="Phone" type="tel" class="form-control" name="Phone" placeholder="Введіть телефон клієнта" required />
-        </div>
-        <div class="mb-3">
-            <label asp-for="Discount" class="form-label">Персональна знижка клієнта</label>
-            <input asp-for="Discount" type="number" class="form-control" name="Discount" placeholder="Введіть знижку клієнта" />
-        </div>
-        <input type="submit" class="btn btn-primary" value="Додати клієнта" />
-    </form>
+<div class="container mt-5 text-center">
+    <h2 class="text-center">Редагувати Клієнта</h2>
+
+    <!-- Випадаючий список рахунків -->
+    <div class="mb-4">
+        <label for="accountSelect">Оберіть рахунок клієнта:</label>
+        <select id="accountSelect" class="form-control">
+            @foreach(var idClient in Model.ClientsId)
+            {
+                <option value="@idClient.Id" asp-route-id="@idClient.Id">@idClient.Id</option>
+            }
+        </select>
+    </div>
+
+    <!-- Форма редагування -->
+    <div id ="EditForm">
+        @await Html.PartialAsync("PartialdEditView.cshtml")
+    </div>
+
 </div>
